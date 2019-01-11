@@ -1,17 +1,19 @@
-FROM kalidass1/mule-runtime-390-app:1.0.0
+FROM eaiesbhub/mule39ce
 
 ARG ARTIFACTS=./artifacts
 
-ARG MULE_HOME=/opt/mule
+#ARG MULE_HOME=/opt/mule
+ARG MULE_HOME=/root/mule-standalone-3.9.0
 
 ARG service=local_candidate.zip
  
 #Deploying the helloworld.zip to mule apps directory
   
-ADD ${ARTIFACTS}/${service} ./mule/apps/
+ADD ${ARTIFACTS}/${service} ${MULE_HOME}/apps/
 
-ENTRYPOINT ${MULE_HOME}/bin/mule && /bin/bash
+# DOWNLOADED MULE 39 CE IMAGE, COMMENTING BELOW INSTRUCION AS MULE IS RUNNING AUTOMATICALLY
+#ENTRYPOINT ${MULE_HOME}/bin/mule && /bin/bash
 
 # Default http port
 
-EXPOSE 8081 8082 8084 9091 8089 8085
+EXPOSE 8089
